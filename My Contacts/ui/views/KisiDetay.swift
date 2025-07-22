@@ -9,21 +9,27 @@ import UIKit
 
 class KisiDetay: UIViewController {
 
+    @IBOutlet weak var tfKisiTel: UITextField!
+    @IBOutlet weak var tfKisiAd: UITextField!
+    
+    
+    var kisi:Kisiler?
+    
+    var viewmodel = KisiDetayViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let k = kisi{
+            tfKisiAd.text=k.kisi_ad
+            tfKisiTel.text=k.kisi_tel
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func buttonGuncelle(_ sender: Any) {
+        if let ka = tfKisiAd.text,let kt = tfKisiTel.text, let k = kisi{
+            viewmodel.guncelle(kisi_id: k.kisi_id!, kisi_ad: ka, kisi_tel: kt)
     }
-    */
-
+    }
 }
+
+
